@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+    url(r'^networks', include("networks.urls", namespace="networks")),
+    url(r'^devices', include("devices.urls", namespace="devices"))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

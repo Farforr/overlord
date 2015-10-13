@@ -8,7 +8,7 @@ class Network(DatedModel, NamedModel):
         super(Network, self).validate_unique(*args, **kwargs)
 
         old_network = self.__class__.objects.filter(
-            name=self.name, owner=self.owner.pk)
+            name=self.name)
 
         if old_network.exists():
             raise ValidationError("Network with that name already exists")
