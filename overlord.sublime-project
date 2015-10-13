@@ -39,7 +39,9 @@
 				"requirements",
 				"tests",
 				"migrations", 
-                "static"
+                "static",
+                "__pycache__",
+                "contrib"
 			],
 			"path": "."
 		}
