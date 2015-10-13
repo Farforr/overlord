@@ -1,0 +1,47 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "python -u \"$file\""
+		}
+	],
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.txt",
+				"*.js",
+				"*.json",
+				"*.cfg",
+				"manage.py",
+				"*.yml",
+				"*.sh",
+				"*.apt",
+				"*.git*",
+                "__init__.py",
+                "Dockerfile",
+                "*.rst",
+                "LICENSE",
+                "Procfile",
+                "env.example",
+                "*.coveragerc",
+                "*.editorconfig",
+                "*.sublime*"
+			],
+			"folder_exclude_patterns":
+			[
+				"compose",
+				"docs",
+				"requirements",
+				"tests",
+				"migrations", 
+                "static"
+			],
+			"path": "."
+		}
+	]
+}
