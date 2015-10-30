@@ -20,7 +20,9 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^networks', include("networks.urls", namespace="networks")),
-    url(r'^devices', include("devices.urls", namespace="devices"))
+    url(r'^nodes', include("nodes.urls", namespace="nodes")),
+    url(r'^sensors', include("sensors.urls", namespace="sensors")),
+    url(r'^actuators', include("actuators.urls", namespace="actuators")),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,31 +6,31 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # URL pattern for the NetworkListView
+    # URL pattern for the SensorListView
     url(
         regex=r'^$',
-        view=views.NetworkListView.as_view(),
+        view=views.SensorListView.as_view(),
         name='list'
     ),
 
-    # URL pattern for the NetworkRedirectView
+    # URL pattern for the SensorRedirectView
     url(
         regex=r'^~redirect/$',
-        view=views.NetworkRedirectView.as_view(),
+        view=views.SensorRedirectView.as_view(),
         name='redirect'
     ),
 
-    # URL pattern for the NetworkDetailView
+    # URL pattern for the SensorDetailView
     url(
         regex=r'^/(?P<name>[\w]+)/$',
-        view=views.NetworkDetailView.as_view(),
+        view=views.SensorDetailView.as_view(),
         name='detail'
     ),
 
-    # URL pattern for the NetworkUpdateView
+    # URL pattern for the SensorUpdateView
     url(
         regex=r'^~update/$',
-        view=views.NetworkUpdateView.as_view(),
+        view=views.SensorUpdateView.as_view(),
         name='update'
     ),
 ]

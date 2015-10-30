@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from .models import SensorType, ActuatorType, Sensor, Actuator, SensorData, ActuatorData
+from .models import Sensor, SensorData, SensorType
 from nodes.models import Node
+
+
 """Inlines"""
 
 
@@ -10,18 +12,9 @@ class SensorInline(admin.TabularInline):
     extra = 3
 
 
-class ActuatorInline(admin.TabularInline):
-    model = Actuator
-    extra = 3
-
-
 class SensorDataInline(admin.TabularInline):
     model = SensorData
     extra = 0
-
-
-class ActuatorDataInline(admin.TabularInline):
-    model = ActuatorData
 
 """End Inlines"""
 
@@ -45,30 +38,15 @@ class SensorAdmin(abstractAdmin):
             'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
     ]
     list_display = ['name', 'node', 'created', 'last_modified']
-    inlines = [SensorDataInline]
+    # inlines = [SensorDataInline]
     list_filter = ['node']
-    search_fields = ['name', 'node']
+    search_fields = ['name', 'node', 'model']
 
-
-class ActuatorAdmin(abstractAdmin):
-    fieldsets = [
-        ('Basic Information', {'fields': ['name', 'model', 'node']}),
-        ('Date Information', {
-            'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
-    ]
-    list_display = ['name', 'node', 'created', 'last_modified']
-    inlines = [ActuatorDataInline]
-    list_filter = ['node']
-    search_fields = ['name', 'node']
 
 admin.site.register(Sensor, SensorAdmin)
-admin.site.register(Actuator, ActuatorAdmin)
-admin.site.register(SensorType)
-admin.site.register(ActuatorType)
 admin.site.register(SensorData)
-admin.site.register(ActuatorData)
+admin.site.register(SensorType)
 
 # As Opposed to setting this in nodes/admin.py I have elected to put this
 # here instead to avoid a circular dependancy
 admin.site._registry[Node].inlines.append(SensorInline)
-admin.site._registry[Node].inlines.append(ActuatorInline)

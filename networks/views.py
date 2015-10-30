@@ -7,13 +7,20 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from braces.views import LoginRequiredMixin
 
 from .models import Network
+from nodes.models import Node
 
 
 class NetworkDetailView(LoginRequiredMixin, DetailView):
     model = Network
+
     # These next two lines tell the view to index lookups by name
     slug_field = "name"
     slug_url_kwarg = "name"
+
+    def get_context_data(self, **kwargs):
+        context = super(NetworkDetailView, self).get_context_data(**kwargs)
+        context["node_list"] = Node.objects.filter(network__name=self.kwargs['name'])
+        return context
 
 
 class NetworkRedirectView(LoginRequiredMixin, RedirectView):

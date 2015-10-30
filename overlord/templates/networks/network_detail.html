@@ -5,14 +5,19 @@
 
 {% block content %}
 <div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.name }}</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ object.name }}</h2>
+            <h3>Nodes</h3>
+            <div class="list-group">
+                {% for node in node_list %}
+                    <a href="{% url 'nodes:detail' node.name %}" class="list-group-item">
+                        <h4 class="list-group-item-heading">{{ node.name }}</h4>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
-  
 </div>
 {% endblock content %}
 
