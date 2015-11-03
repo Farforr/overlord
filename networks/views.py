@@ -2,12 +2,30 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from django.contrib import messages
+from django.views.generic import DetailView, ListView, RedirectView, UpdateView, CreateView
 
 from braces.views import LoginRequiredMixin
 
 from .models import Network
 from nodes.models import Node
+
+
+class NetworkActionMixin(object):
+    fields = ['name']
+
+    @property
+    def success_msg(self):
+        return NotImplemented
+
+    def form_valid(self, form):
+        messages.info(self.request, self.success_msg)
+        return super(NetworkActionMixin, self).form_valid(form)
+
+
+class NetworkCreateView(LoginRequiredMixin, NetworkActionMixin, CreateView):
+    model = Network
+    success_msg = 'Network Created!'
 
 
 class NetworkDetailView(LoginRequiredMixin, DetailView):
@@ -31,9 +49,10 @@ class NetworkRedirectView(LoginRequiredMixin, RedirectView):
                        kwargs={"name": self.request.network.name})
 
 
-class NetworkUpdateView(LoginRequiredMixin, UpdateView):
+class NetworkUpdateView(LoginRequiredMixin, NetworkActionMixin, UpdateView):
 
-    fields = ['name', ]
+    fields = ['name']
+    success_msg = 'Network Updated!'
 
     model = Network
 
@@ -43,8 +62,13 @@ class NetworkUpdateView(LoginRequiredMixin, UpdateView):
                        kwargs={"name": self.request.network.name})
 
 
-class NetworkListView(LoginRequiredMixin, ListView):
+class NetworkListView(LoginRequiredMixin, NetworkActionMixin, ListView):
     model = Network
+
+    def get_context_data(self, **kwargs):
+        context = super(NetworkListView, self).get_context_data(**kwargs)
+        return context
+
     # These next two lines tell the view to index lookups by username
     slug_field = "name"
     slug_url_kwarg = "name"

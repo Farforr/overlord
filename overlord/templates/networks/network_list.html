@@ -5,8 +5,11 @@
 {% block content %}
 
 <div class="container">
-
     <h2>Networks</h2>
+
+    <div>
+        <a href="{% url 'networks:create' %}">Add a Network</a>
+    </div>
 
     <div class="list-group">
         {% for network in network_list %}

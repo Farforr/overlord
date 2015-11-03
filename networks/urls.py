@@ -33,4 +33,11 @@ urlpatterns = [
         view=views.NetworkUpdateView.as_view(),
         name='update'
     ),
+
+    # URL pattern for the NetworkCreateView
+    url(
+        regex=r'^~create/$',
+        view=views.NetworkCreateView.as_view(),
+        name='create'
+    ),
 ]

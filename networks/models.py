@@ -1,9 +1,12 @@
 from core.models import DatedModel, NamedModel
-from django.core.validators import ValidationError
+# from django.core.validators import ValidationError
+from django.core.urlresolvers import reverse
 
 
 class Network(DatedModel, NamedModel):
-    pass
+
+    def get_absolute_url(self):
+        return reverse("networks:detail", kwargs={"name": self.name})
     # def validate_unique(self, *args, **kwargs):
     #     super(Network, self).validate_unique(*args, **kwargs)
 
