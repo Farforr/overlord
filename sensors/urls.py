@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URL pattern for the SensorDetailView
     url(
-        regex=r'^/(?P<name>[\w]+)/$',
+        regex=r'^(?P<name>[\w]+)/$',
         view=views.SensorDetailView.as_view(),
         name='detail'
     ),

@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URL pattern for the NodeDetailView
     url(
-        regex=r'^/(?P<name>[\w]+)/$',
+        regex=r'^(?P<name>[\w]+)/$',
         view=views.NodeDetailView.as_view(),
         name='detail'
     ),

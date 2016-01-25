@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URL pattern for the NetworkDetailView
     url(
-        regex=r'^/(?P<name>[\w]+)/$',
+        regex=r'^(?P<name>[\w]+)/$',
         view=views.NetworkDetailView.as_view(),
         name='detail'
     ),

@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URL pattern for the ActuatorDetailView
     url(
-        regex=r'^/(?P<name>[\w]+)/$',
+        regex=r'^(?P<name>[\w]+)/$',
         view=views.ActuatorDetailView.as_view(),
         name='detail'
     ),
