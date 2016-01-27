@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import DatedModel, NamedModel
+from overlord.core.models import DatedModel, NamedModel
 from overlord.nodes.models import Node
 
 

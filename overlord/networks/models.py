@@ -1,4 +1,4 @@
-from core.models import DatedModel, NamedModel
+from overlord.core.models import DatedModel, NamedModel
 # from django.core.validators import ValidationError
 from django.core.urlresolvers import reverse
 
