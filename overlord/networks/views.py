@@ -5,10 +5,18 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, CreateView
 
+
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework import permissions
+
+
 from braces.views import LoginRequiredMixin
 
 from .models import Network
+from .serializers import NetworkSerializer
 from overlord.nodes.models import Node
+from overlord.core.permissions import IsOwnerOrReadOnly
 
 
 class NetworkActionMixin(object):
@@ -69,6 +77,22 @@ class NetworkListView(LoginRequiredMixin, NetworkActionMixin, ListView):
         context = super(NetworkListView, self).get_context_data(**kwargs)
         return context
 
-    # These next two lines tell the view to index lookups by username
+    # These next two lines tell the view to index lookups by usernameN
     slug_field = "name"
     slug_url_kwarg = "name"
+
+
+# Api Views
+class NetworkList(ListCreateAPIView):
+    queryset = Network.objects.all()
+    serializer_class = NetworkSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class NetworkDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Network.objects.all()
+    serializer_class = NetworkSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)

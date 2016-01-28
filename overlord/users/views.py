@@ -6,7 +6,11 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from braces.views import LoginRequiredMixin
 
+from rest_framework.generics import ListAPIView
+from rest_framework.generics import RetrieveAPIView
+
 from .models import User
+from .serializers import UserSerializer
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -46,3 +50,13 @@ class UserListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+
+class UserList(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

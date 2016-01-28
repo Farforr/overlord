@@ -6,6 +6,16 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(regex=r'^api/$',
+        view=views.UserList.as_view(),
+        name='user_rest_api',
+    ),
+
+    url(regex=r'^api/(?P<pk>[0-9]+)/$',
+        view=views.UserDetail.as_view(),
+        name='user_rest_api'
+    ),
+
     # URL pattern for the UserListView
     url(
         regex=r'^$',
