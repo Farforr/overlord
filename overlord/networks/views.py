@@ -35,6 +35,11 @@ class NetworkCreateView(LoginRequiredMixin, NetworkActionMixin, CreateView):
     model = Network
     success_msg = 'Network Created!'
 
+    def form_valid(self, form):
+        owner = self.request.user
+        form.instance.owner = owner
+        return super(NetworkCreateView, self).form_valid(form)
+
 
 class NetworkDetailView(LoginRequiredMixin, DetailView):
     model = Network
