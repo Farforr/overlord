@@ -6,7 +6,13 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from braces.views import LoginRequiredMixin
 
-from .models import Sensor
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework import permissions
+
+from .models import Sensor, SensorData
+from .serializers import SensorSerializer, SensorDataSerializer
+from overlord.core.permissions import IsOwnerOrReadOnly
 
 
 class SensorDetailView(LoginRequiredMixin, DetailView):
@@ -41,3 +47,28 @@ class SensorListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by name
     slug_field = "name"
     slug_url_kwarg = "name"
+
+
+# Api Views
+class SensorList(ListCreateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class SensorDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+
+class SensorDataList(ListCreateAPIView):
+    queryset = SensorData.objects.all()
+    serializer_class = SensorDataSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+    def perform_create(self, serializer):
+        serializer.save()
