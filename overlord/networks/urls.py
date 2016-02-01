@@ -36,19 +36,6 @@ urlpatterns = [
         name='create'
     ),
 
-    # Api URL patterns
-    url(
-        regex=r"^api/$",
-        view=views.NetworkList.as_view(),
-        name="network_rest_api"
-    ),
-
-    url(
-        regex=r"^api/(?P<pk>[0-9]+)/$",
-        view=views.NetworkDetail.as_view(),
-        name="network_rest_api"
-    ),
-
     # URL pattern for the NetworkDetailView
     url(
         regex=r'^(?P<name>[\w]+)/$',

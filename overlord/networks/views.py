@@ -15,8 +15,8 @@ from braces.views import LoginRequiredMixin
 
 from .models import Network
 from .serializers import NetworkSerializer
-from overlord.nodes.models import Node
 from overlord.core.permissions import IsOwnerOrReadOnly
+from overlord.nodes.models import Node
 
 
 class NetworkActionMixin(object):
