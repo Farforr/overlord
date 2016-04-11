@@ -106,6 +106,7 @@ DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     'default': env.db("DATABASE_URL", default="postgres:///overlord"),
 }
+
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
