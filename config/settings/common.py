@@ -49,7 +49,8 @@ LOCAL_APPS = (
     'overlord.networks',
     'overlord.nodes',
     'overlord.sensors',
-    'overlord.actuators'
+    'overlord.actuators',
+    'overlord.underlings',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
