@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Minion: {{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ object.name }}</h2>
+            <h4>Minions</h4>
+            <div class="list-group">
+                {% for minion in minion_list %}
+                    <a href="{% url 'minions:detail' minion.name %}" class="list-group-item">
+                        <h4 class="list-group-item-heading">{{ minion.name }}</h4>
+                    </a>
+                {% endfor %}
+            </div>
+            <h4>Data</h4>
+            <div class="list-group">
+                {% for data in data_list %}
+                    <a href="{% url 'minions:data_detail' data.pk %}" class="list-group-item">Data Object</a>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

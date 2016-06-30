@@ -20,10 +20,11 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^api/', include("overlord.core.api", namespace="api")),
-    url(r'^networks/', include("overlord.networks.urls", namespace="networks")),
-    url(r'^nodes/', include("overlord.nodes.urls", namespace="nodes")),
-    url(r'^sensors/', include("overlord.sensors.urls", namespace="sensors")),
-    url(r'^actuators/', include("overlord.actuators.urls", namespace="actuators")),
+    url(r'^minions/', include("overlord.minions.urls", namespace="minions")),
+    # url(r'^networks/', include("overlord.networks.urls", namespace="networks")),
+    # url(r'^nodes/', include("overlord.nodes.urls", namespace="nodes")),
+    # url(r'^sensors/', include("overlord.sensors.urls", namespace="sensors")),
+    # url(r'^actuators/', include("overlord.actuators.urls", namespace="actuators")),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}MinionData: {{ object.pk }}{% endblock %}
+
+{% block content %}
+
+<div>
+    <ul>
+        <li>Data received from: {{object.minion}} at {{object.created}}</li>
+        <li>Field name: {{object.field_name}}</li>
+        <li>Field value: {{object.field_value}}</li>
+        <li><a href="{% url 'minions:request_detail' object.request.pk %}" class="list-group-item">Link to request that generated this data:</a></li>
+    </ul>
+</div>
+
+{% endblock content %}
+

@@ -46,11 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'overlord.core',
     'overlord.users',  # custom users app
-    'overlord.networks',
-    'overlord.nodes',
-    'overlord.sensors',
-    'overlord.actuators',
-    'overlord.underlings',
+    'overlord.minions',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
