@@ -1,10 +1,7 @@
 from django.conf.urls import url
 
 from overlord.users import views as user_views
-from overlord.networks import views as network_views
-from overlord.nodes import views as node_views
-from overlord.sensors import views as sensor_views
-from overlord.actuators import views as actuator_views
+from django.conf.urls import include
 
 urlpatterns = [
     # url confs for users app
@@ -19,4 +16,6 @@ urlpatterns = [
         view=user_views.UserDetail.as_view(),
         name='user_rest_api'
     ),
+
+    url(r'^minions/v1/', include("overlord.minions.api.v1.urls", namespace="minions_api_v1")),
 ]

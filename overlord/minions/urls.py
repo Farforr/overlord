@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.conf.urls import url
-from rest_framework.urlpatterns import format_suffix_patterns
+from django.conf.urls import include, url
 
 from . import views
 
 urlpatterns = [
+
     # URL pattern for the MinionListView
     url(
         regex=r'^$',
@@ -38,10 +38,11 @@ urlpatterns = [
 
     # URL pattern for the MinionDetailView
     url(
-        regex=r'^(?P<name>[\w]+)/$',
+        regex=r'^minion/(?P<name>[\w]+)/$',
         view=views.MinionDetailView.as_view(),
         name='detail'
     ),
+
 
     # URL pattern for the MinionDataDetailView
     url(
@@ -56,7 +57,8 @@ urlpatterns = [
         view=views.MinionRequestDetailView.as_view(),
         name='request_detail'
     ),
+
+    url(r'^api/v1/', include("overlord.minions.api.v1.urls", namespace="api")),
 ]
 
 
-urlpatterns = format_suffix_patterns(urlpatterns)
