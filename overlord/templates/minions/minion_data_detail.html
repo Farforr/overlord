@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}MinionData: {{ object.pk }}{% endblock %}
+
+{% block content %}
+
+<div>
+    <ul>
+        <li>Data received from: {{object.minion}} at {{object.created}}</li>
+        <li>Field name: {{object.field_name}}</li>
+        <li>Field value: {{object.field_value}}</li>
+    </ul>
+</div>
+
+{% endblock content %}
+

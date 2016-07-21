@@ -46,10 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'overlord.core',
     'overlord.users',  # custom users app
-    'overlord.networks',
-    'overlord.nodes',
-    'overlord.sensors',
-    'overlord.actuators'
+    'overlord.minions',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -277,3 +274,6 @@ LOGGING = {
 }
 
 # Your common stuff: Below this line define 3rd party library settings
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}
