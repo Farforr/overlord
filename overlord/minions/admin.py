@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Minion, MinionRequest, MinionRequestHeader, MinionRequestBody, MinionData
+from .models import Minion, MinionData
 
 class MinionInline(admin.TabularInline):
     model = Minion
@@ -8,19 +8,10 @@ class MinionInline(admin.TabularInline):
     ]
     extra = 3
 
-class MinionRequestInline(admin.TabularInline):
-    model = MinionRequest
+class MinionDataInline(admin.TabularInline):
+    model = MinionData
+    fields = ('field_name', 'field_value')
     extra = 3
-
-class MinionRequestHeaderInline(admin.TabularInline):
-    model = MinionRequestHeader
-    extra = 3
-    verbose_name_plural = "Headers"
-
-class MinionRequestBodyInline(admin.TabularInline):
-    model = MinionRequestBody
-    extra = 1
-    verbose_name_plural = "Body"
 
 @admin.register(Minion)
 class MinionAdmin(admin.ModelAdmin):
@@ -30,7 +21,7 @@ class MinionAdmin(admin.ModelAdmin):
         ('Date Information', {
             'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
     ]
-    inlines = [MinionInline]
+    inlines = [MinionInline, MinionDataInline]
 
 
     def save_formset(self, request, form, formset, change):
@@ -42,36 +33,8 @@ class MinionAdmin(admin.ModelAdmin):
             instance.save()
         formset.save_m2m()
 
-@admin.register(MinionRequest)
-class MinionRequestAdmin(admin.ModelAdmin):
-    readonly_fields = ['created', 'last_modified']
-    fieldsets = [
-        ('Overview', {'fields': ['owner', 'direction', 'response']}),
-        ('Date Information', {
-            'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
-    ]
-    inlines = [MinionRequestHeaderInline, MinionRequestBodyInline]
-
-@admin.register(MinionRequestHeader)
-class MinionRequestHeaderAdmin(admin.ModelAdmin):
-    readonly_fields = ['created', 'last_modified']
-    fieldsets = [
-        ('Overview', {'fields': ['request', 'name', 'value']}),
-        ('Date Information', {
-            'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
-    ]
-
-@admin.register(MinionRequestBody)
-class MinionRequestBodyAdmin(admin.ModelAdmin):
-    readonly_fields = ['created', 'last_modified']
-    fieldsets = [
-        ('Overview', {'fields': ['request', 'value']}),
-        ('Date Information', {
-            'fields': ['created', 'last_modified'], 'classes': ['collapse']}),
-    ]
-
 @admin.register(MinionData)
-class MinionRequestBodyAdmin(admin.ModelAdmin):
+class MinionDataAdmin(admin.ModelAdmin):
     readonly_fields = ['created', 'last_modified']
     fieldsets = [
         ('Overview', {'fields': ['minion', 'request', 'field_name', 'field_value']}),

@@ -13,7 +13,7 @@ from rest_framework import permissions
 
 from overlord.core.permissions import IsOwnerOrReadOnly
 
-from .models import Minion, MinionRequest, MinionRequestHeader, MinionRequestBody, MinionData
+from .models import Minion, MinionData
 
 
 
@@ -32,8 +32,8 @@ class MinionListView(LoginRequiredMixin, ListView):
     model = Minion
 
     # These next two lines tell the view to index lookups by name
-    slug_field = "name"
-    slug_url_kwarg = "name"
+    # slug_field = "name"
+    # slug_url_kwarg = "name"
 
 class MinionCreateView(LoginRequiredMixin, CreateView):
     model = Minion
@@ -60,9 +60,6 @@ class MinionDetailView(LoginRequiredMixin, DetailView):
         context["data_list"] = MinionData.objects.filter(minion=self.object.pk)
         return context
 
-
-
-
 # class MinionDataListView(LoginRequiredMixin, ListView):
 #     model = MinionData
 #     template_name = "minions/minion_data_list.html"
@@ -74,19 +71,6 @@ class MinionDataDetailView(LoginRequiredMixin, DetailView):
     template_name = "minions/minion_data_detail.html"
     slug_field = "pk"
     slug_url_kwarg = "pk"
-
-class MinionRequestDetailView(LoginRequiredMixin, DetailView):
-    slug_field = "pk"
-    slug_url_kwarg = "pk"
-    model = MinionRequest
-
-    def get_context_data(self, **kwargs):
-        context = super(MinionRequestDetailView, self).get_context_data(**kwargs)
-        context["headers"] = MinionRequestHeader.objects.filter(request=self.object.pk)
-        context["body"] = MinionRequestBody.objects.filter(request=self.object.pk)
-        return context
-
-
 
 # class MinionRedirectView(LoginRequiredMixin, RedirectView):
 #     permanent = False

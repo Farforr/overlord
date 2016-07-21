@@ -273,3 +273,6 @@ LOGGING = {
 }
 
 # Your common stuff: Below this line define 3rd party library settings
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}

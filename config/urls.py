@@ -15,10 +15,9 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # User management
-    url(r'^users/', include("overlord.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^users/', include("overlord.users.urls", namespace="users")),
 
-    # Your stuff: custom urls includes go here
     url(r'^minions/', include("overlord.minions.urls", namespace="minions")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

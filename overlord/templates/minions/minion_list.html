@@ -8,12 +8,12 @@
     <h2>Minions</h2>
 
     <div>
-        <a href="{% url 'minions:create' %}">Create a new Minion</a>
+        <a href="{% url 'minions:minion-create' %}">Create a new Minion</a>
     </div>
 
     <div class="list-group">
         {% for minion in minion_list %}
-          <a href="{% url 'minions:detail' minion.name %}" class="list-group-item">
+          <a href="{% url 'minions:minion-detail' minion.name %}" class="list-group-item">
             <h4 class="list-group-item-heading">{{ minion.name }}</h4>
           </a>
         {% endfor %}
