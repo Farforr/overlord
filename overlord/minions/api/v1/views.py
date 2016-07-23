@@ -12,6 +12,7 @@ from overlord.core.permissions import IsOwnerOrReadOnly
 from ... models import Minion, MinionData
 from . serializers import MinionSerializer, MinionDataSerializer
 
+
 class MinionViewSet(viewsets.ModelViewSet):
     serializer_class = MinionSerializer
     queryset = Minion.objects.all()
@@ -22,6 +23,7 @@ class MinionViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
 
 class MinionDataViewSet(viewsets.ModelViewSet):
     serializer_class = MinionDataSerializer
