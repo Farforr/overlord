@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^users/', include("overlord.users.urls", namespace="users")),
 
+    # Minions App
     url(r'^minions/', include("overlord.minions.urls", namespace="minions")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
