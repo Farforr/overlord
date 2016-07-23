@@ -18,32 +18,4 @@ urlpatterns = [
         r'^',
         include(router.urls)
     ),
-
-    # url(
-    #     regex = r'^$',
-    #     view  = views.api_root,
-    #     name  = 'index'
-    # ),
-    # url(
-    #     regex = r'^minion/$',
-    #     view  = views.MinionList.as_view(),
-    #     name  = "minion-list"
-    # ),
-    # url(
-    #     regex = r'^minion/(?P<pk>[\w]+)/$',
-    #     view  = views.MinionDetail.as_view(),
-    #     name  = "minion-detail"
-    # ),
-    # url(
-    #     regex = r'^data/$',
-    #     view  = views.MinionDataList.as_view(),
-    #     name  = "data-list"
-    # ),
-    # url(
-    #     regex = r'^data/(?P<pk>[0-9]+)/$',
-    #     view  = views.MinionDataDetail.as_view(),
-    #     name  = "data-detail"
-    # ),
 ]
-
-# urlpatterns = format_suffix_patterns(urlpatterns)

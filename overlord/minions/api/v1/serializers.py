@@ -10,18 +10,18 @@ class MinionSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {'url': {'view_name': 'minions:api:minion-detail'}}
 
     data = serializers.HyperlinkedRelatedField(
-        many = True,
-        view_name = 'minions:api:data-detail',
-        read_only = True,
-        lookup_field = 'pk'
+        many=True,
+        view_name='minions:api:data-detail',
+        read_only=True,
+        lookup_field='pk'
     )
 
 
 class MinionDataSerializer(serializers.HyperlinkedModelSerializer):
     minion = serializers.HyperlinkedRelatedField(
-        view_name = 'minions:api:minion-detail',
-        read_only = True,
-        lookup_field = 'pk'
+        view_name='minions:api:minion-detail',
+        read_only=True,
+        lookup_field='pk'
     )
     class Meta:
         model = MinionData
