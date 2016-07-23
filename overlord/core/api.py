@@ -16,6 +16,4 @@ urlpatterns = [
         view=user_views.UserDetail.as_view(),
         name='user_rest_api'
     ),
-
-    url(r'^minions/v1/', include("overlord.minions.api.v1.urls", namespace="minions_api_v1")),
 ]
