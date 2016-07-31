@@ -37,11 +37,10 @@
 				"compose",
 				"docs",
 				"requirements",
-				"tests",
 				"migrations", 
-                "static",
-                "__pycache__",
-                "contrib"
+                                "static",
+                                "__pycache__",
+                                "contrib"
 			],
 			"path": "."
 		}
