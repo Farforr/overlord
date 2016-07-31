@@ -51,5 +51,3 @@ urlpatterns = [
 
     url(r'^api/v1/', include("overlord.minions.api.v1.urls", namespace="api")),
 ]
-
-

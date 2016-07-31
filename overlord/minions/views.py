@@ -16,7 +16,6 @@ from overlord.core.permissions import IsOwnerOrReadOnly
 from .models import Minion, MinionData
 
 
-
 # class MinionActionMixin(object):
 #     fields = ['name']
 
@@ -35,6 +34,7 @@ class MinionListView(LoginRequiredMixin, ListView):
     # slug_field = "name"
     # slug_url_kwarg = "name"
 
+
 class MinionCreateView(LoginRequiredMixin, CreateView):
     model = Minion
     success_msg = 'Minion Created!'
@@ -42,8 +42,7 @@ class MinionCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'parent']
 
     def form_valid(self, form):
-        owner = self.request.user
-        form.instance.owner = owner
+        form.instance.owner = self.request.user
         return super(MinionCreateView, self).form_valid(form)
 
 
@@ -65,6 +64,7 @@ class MinionDetailView(LoginRequiredMixin, DetailView):
 #     template_name = "minions/minion_data_list.html"
 #     slug_field = "name"
 #     slug_url_kwarg = "name"
+
 
 class MinionDataDetailView(LoginRequiredMixin, DetailView):
     model = MinionData
@@ -91,4 +91,3 @@ class MinionDataDetailView(LoginRequiredMixin, DetailView):
 #     def get_success_url(self):
 #         return reverse("minions:detail",
 #                        kwargs={"name": self.request.minion.name})
-

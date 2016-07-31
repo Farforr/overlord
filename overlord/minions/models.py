@@ -9,9 +9,9 @@ class Minion(DatedModel, NamedModel):
     owner = models.ForeignKey(User, related_name='minions')
     parent = models.ForeignKey(
         'self',
-        related_name = 'minions',
-        blank = True,
-        null = True
+        related_name='minions',
+        blank=True,
+        null=True
     )
 
     def get_absolute_url(self):
@@ -20,11 +20,11 @@ class Minion(DatedModel, NamedModel):
     def is_top_level(self):
         return self.parent is None
 
+
 class MinionData(DatedModel):
     minion = models.ForeignKey(Minion, related_name='data')
     field_name = models.CharField(max_length=80)
     field_value = models.CharField(max_length=80)
-
 
     def get_absolute_url(self):
         return reverse("minions:data-detail", kwargs={"pk": self.pk})
